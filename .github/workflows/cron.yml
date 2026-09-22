@@ -4,7 +4,6 @@ on:
   schedule:
     - cron: "*/30 * * * *"
     - cron: "*/5 * * * *"
-    - cron: "*/2 * * * *"
 
 jobs:
   cleanup-uploads:
@@ -22,7 +21,7 @@ jobs:
         run: curl -s -X POST ${{ secrets.BACKEND_URL }}/api/cron/check-overdue-bookings
 
   expire-unconfirmed:
-    if: github.event.schedule == '*/2 * * * *'
+    if: github.event.schedule == '*/5 * * * *'
     runs-on: ubuntu-latest
     steps:
       - name: Expire unconfirmed bookings
